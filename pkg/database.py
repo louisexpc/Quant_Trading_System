@@ -52,12 +52,12 @@ class DatabaseConnector:
             print(f"Error storing data: {e}")
             self.discord.send_message(f"Error storing data: {e}")
 
-if __name__ == "__main__":
-    # 初始化資料庫連接
-    CONFIG_PATH ="C:\\Users\\louislin\\OneDrive\\桌面\\data_analysis\\trading_system_v1\\config\\database.json"
-    db = DatabaseConnector(CONFIG_PATH)
-    cursor = db.collection.find({'symbol':"BTC/USDT"})  # 篩選年齡大於 20 的文件
-    for doc in cursor:
-        print(doc)
+# if __name__ == "__main__":
+#     # 初始化資料庫連接
+#     CONFIG_PATH ="C:\\Users\\louislin\\OneDrive\\桌面\\data_analysis\\trading_system_v1\\config\\database.json"
+#     db = DatabaseConnector(CONFIG_PATH)
+#     cursor = db.collection.find({'symbol':"BTC/USDT"})  # 篩選年齡大於 20 的文件
+#     for doc in cursor:
+#         print(doc)
 
 

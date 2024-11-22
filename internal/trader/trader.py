@@ -71,7 +71,7 @@ class Trader(object):
                     self.buy()
 
             """ Sell side: Initialize Order Informatin """
-            unselled_order = self.get_unselled_orders()
+            unselled_order = self.get_unselled_orders(symbol)
             if len(unselled_order)>0:
                 for order in unselled_order:
                     # 執行賣單
