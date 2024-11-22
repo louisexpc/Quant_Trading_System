@@ -1,0 +1,64 @@
+fetch_order() 返回資訊範例
+假設返回的訂單資訊如下：
+{
+    "id": "123456789",
+    "timestamp": 1689500000000,
+    "datetime": "2023-05-10T12:34:56.789Z",
+    "status": "open",
+    "symbol": "BTC/USDT",
+    "type": "limit",
+    "side": "buy",
+    "price": 30000.0,
+    "amount": 0.001,
+    "filled": 0.0,
+    "remaining": 0.001,
+    "fee": {"currency": "USDT", "cost": 0.1}
+}
+關鍵欄位解釋
+id：訂單的唯一標識符。
+status：訂單的當前狀態，例如 open, closed, canceled, partially_filled。
+symbol：交易對，例如 'BTC/USDT'。
+type：訂單類型，例如 'limit', 'market'。
+side：訂單方向，例如 'buy', 'sell'。
+price：訂單價格（市價單可能為 null）。
+amount：訂單總數量。
+filled：已成交數量。
+remaining：未成交數量。
+fee：手續費資訊，包括手續費金額與幣種。
+
+3. 返回的資訊
+create_order() 返回的資訊是一個字典，包含關於該訂單的詳細內容，結構可能因交易所不同略有差異。以下是常見的返回欄位及其解釋：
+
+返回資訊範例
+{
+    "id": "123456789",
+    "timestamp": 1689500000000,
+    "datetime": "2023-05-10T12:34:56.789Z",
+    "status": "closed",
+    "symbol": "BTC/USDT",
+    "type": "market",
+    "side": "sell",
+    "price": 28000.0,
+    "amount": 0.001,
+    "filled": 0.001,
+    "remaining": 0.0,
+    "cost": 28.0,
+    "fee": {"currency": "USDT", "cost": 0.02},
+    "info": {...}
+}
+主要欄位解釋
+欄位	含義
+id	訂單唯一標識符，交易所用於標識該訂單。
+timestamp	訂單創建時間戳（毫秒）。
+datetime	訂單創建的可讀時間（ISO 8601 格式）。
+status	訂單狀態：open, closed, canceled, partially_filled。
+symbol	交易對，例如 BTC/USDT。
+type	訂單類型，這裡是 market（市價單）。
+side	訂單方向：buy 或 sell。
+price	實際成交價格（市價單可能是市場成交價格，而非用戶指定）。
+amount	訂單總數量，這裡是 0.001 BTC。
+filled	已成交的數量，這裡是 0.001（完全成交）。
+remaining	未成交的數量，市價單通常是 0。
+cost	總花費或總收益（根據訂單方向，這裡是 28 USDT）。
+fee	手續費資訊，包括 currency（手續費幣種）和 cost（手續費金額）。
+info	交易所返回的原始訂單數據，通常是嵌套的原始 API 回應，依交易所而異，包含更多細節。
